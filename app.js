@@ -4,6 +4,13 @@ const path = require("path");
 
 const app = express();
 
+const {
+    PORT = 5400,
+    NODE_ENV = 'development',
+} = process.env;
+
+const IN_PROD = NODE_ENV === 'production';
+
 const publicDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicDirectory));
 
@@ -31,7 +38,7 @@ app.get("/course", (req, res)=> {
 })
 
 
-app.listen(5000, ()=>{
-    console.log("Server started on Port 5000");
+app.listen(PORT, ()=>{
+    console.log(`Server started on Port ${PORT}`);
 
 });
